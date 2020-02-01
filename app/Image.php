@@ -11,6 +11,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property int $status
+ * @property string $path
+ */
 class Image extends Model
 {
     public $table = 'images';
@@ -29,6 +34,6 @@ class Image extends Model
 
     public function status()
     {
-        return $this->hasOne(Status::class, 'id', 'statusId');
+        return $this->hasOne(Status::class, 'id', 'status')->first();
     }
 }

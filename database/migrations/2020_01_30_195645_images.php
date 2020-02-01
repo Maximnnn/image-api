@@ -16,8 +16,10 @@ class Images extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('status');
-            $table->string('url', 255)->nullable();
+            $table->string('path', 255)->nullable();
             $table->timestamps();
+
+            $table->index('status');
         });
     }
 

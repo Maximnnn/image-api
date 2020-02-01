@@ -11,6 +11,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int imageId
+ * @property int width
+ * @property int height
+ * @property string $color
+ */
 class ImageParameters extends Model
 {
     public $table = 'imageParameters';

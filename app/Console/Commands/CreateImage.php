@@ -14,7 +14,7 @@ class createImage extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'image:create';
 
     /**
      * The console command description.

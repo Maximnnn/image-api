@@ -11,6 +11,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property int $width
+ * @property int $height
+ * @property int $x
+ * @property int $y
+ * @property string $color
+ * @property string $customId
+ * @property int $imageId
+*/
 class Rectangle extends Model
 {
     public $table = 'rectangles';

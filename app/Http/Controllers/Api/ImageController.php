@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreImageRequest;
 use App\Image;
 use App\Services\ImageCreator;
+use App\Status;
 use Illuminate\Http\JsonResponse;
 
 class ImageController extends Controller
@@ -22,7 +23,7 @@ class ImageController extends Controller
     {
         $imageArr = array_diff_key($request->validated(), ['rectangles']);
 
-        $image = $imageCreator->prepare($imageArr, $request->validated()['rectangles']);
+        $image = $imageCreator->addToQueue($imageArr, $request->validated()['rectangles']);
 
         return [
             'success' => true,
@@ -30,9 +31,31 @@ class ImageController extends Controller
         ];
     }
 
-    public function get()
+    public function get(Image $image)
     {
-        return Image::query();
+        $status = $image->status()->name;
+
+        $response['status'] = $status;
+
+        switch ($status) {
+            case Status::STATUS_PENDING:
+                $response['queue_length'] = Image::query()
+                    ->where('status', Status::id(Status::STATUS_PENDING))
+                    ->where('id', '<', $image->id)
+                    ->count();
+                break;
+            case Status::STATUS_DONE:
+                $response = [
+                    'status' => $image->status()->name,
+                    'url'    => asset($image->path)
+                ];
+                break;
+            case Status::STATUS_FAILED:
+                $response['reason'] = 'not implemented';
+        };
+
+
+        return $response;
     }
 
 }

@@ -18,9 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/test', function() {
+    return asset('storage/1.png');
 
+
+    return storage_path('public/1.png');
 });
 
 Route::post('/create','Api\\ImageController@create');
 
-Route::get('/get', 'Api\\ImageController@get');
+Route::get('/get/{image}', 'Api\\ImageController@get');
