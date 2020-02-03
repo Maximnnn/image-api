@@ -2021,6 +2021,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/api/create', this.form).then(function (res) {
         console.log(res.data);
         _this.lastId = res.data.id;
+        _this.url = null;
       })["catch"](function (e) {
         return console.log(e);
       });
@@ -37417,43 +37418,50 @@ var render = function() {
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-10" }, [
         _c("form", [
-          _c("div", { staticClass: "form-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.lastId,
-                  expression: "lastId"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "id" },
-              domProps: { value: _vm.lastId },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+          _vm.lastId
+            ? _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.lastId,
+                      expression: "lastId"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "id" },
+                  domProps: { value: _vm.lastId },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.lastId = $event.target.value
+                    }
                   }
-                  _vm.lastId = $event.target.value
-                }
-              }
-            })
-          ]),
+                })
+              ])
+            : _vm._e(),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c(
-              "button",
-              { staticClass: "btn btn-success", on: { click: _vm.process } },
-              [_vm._v("Process")]
-            ),
-            _vm._v(" "),
-            _vm.url
-              ? _c("a", { attrs: { href: _vm.url, target: "_blank" } }, [
-                  _vm._v("last image")
-                ])
-              : _vm._e()
-          ]),
+          _vm.lastId
+            ? _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    on: { click: _vm.process }
+                  },
+                  [_vm._v("Process")]
+                ),
+                _vm._v(" "),
+                _vm.url
+                  ? _c("a", { attrs: { href: _vm.url, target: "_blank" } }, [
+                      _vm._v("last image")
+                    ])
+                  : _vm._e()
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _c("input", {

@@ -4,11 +4,11 @@
             <div class="col-md-10">
                 <form>
 
-                    <div class="form-group">
+                    <div class="form-group" v-if="lastId">
                         <input type="text" class="form-control" placeholder="id" v-model="lastId">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" v-if="lastId">
                         <button class="btn btn-success" v-on:click="process">Process</button>
 
                         <a v-if="url" v-bind:href="url" target="_blank">last image</a>
@@ -118,6 +118,7 @@
                     .then((res) => {
                         console.log(res.data);
                         this.lastId = res.data.id;
+                        this.url = null;
                     })
                     .catch(e => console.log(e));
             },
