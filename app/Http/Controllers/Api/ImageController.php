@@ -45,13 +45,13 @@ class ImageController extends Controller
                     ->count();
                 break;
             case Status::STATUS_DONE:
-                $response = [
-                    'status' => $image->status()->name,
-                    'url'    => asset($image->path)
-                ];
+                $response['url'] = asset($image->path);
                 break;
             case Status::STATUS_FAILED:
                 $response['reason'] = 'not implemented';
+                break;
+            case Status::STATUS_IN_PROGRESS:
+                break;
         };
 
 

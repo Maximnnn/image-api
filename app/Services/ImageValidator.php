@@ -45,10 +45,10 @@ class ImageValidator
 
     private function compareRectangles(Rectangle $r1, Rectangle $r2)
     {
-        $maxXr1 = $r1->x + $r1->width;
-        $maxYr1 = $r1->y + $r1->height;
-
-        if ($maxXr1 > $r2->x && $maxYr1 > $r2->y) {
+        if (
+            $r1->left() < $r2->right() && $r1->right() > $r2->left()
+            && $r1->top() > $r2->bottom() && $r1->bottom() < $r2->top()
+        ) {
             throw new ValidateException('rectangles_overlap', ['rectangles_overlap' => ['ids' => [$r1->customId, $r2->customId]]]);
         }
     }

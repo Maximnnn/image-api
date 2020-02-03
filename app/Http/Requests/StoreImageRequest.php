@@ -29,8 +29,8 @@ class StoreImageRequest extends FormRequest
             'width' => 'required|int|min:640|max:1920',
             'height' => 'required|int|min:480|max:1080',
             'color' => ['required', 'regex:/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/'],
+            'rectangles' => 'array|required',
 
-            'rectangles.*.id' => 'required|distinct|string|max:255|min:1',
             'rectangles.*.x' => 'required|int|min:0',
             'rectangles.*.y' => 'required|int|min:0',
             'rectangles.*.width' => 'required|int|min:0',

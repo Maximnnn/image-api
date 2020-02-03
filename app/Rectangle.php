@@ -34,4 +34,26 @@ class Rectangle extends Model
         return $this->belongsTo(Image::class, 'id', 'imageId');
     }
 
+    public function right(): int
+    {
+        return $this->x + $this->width;
+    }
+
+    public function left(): int
+    {
+        return $this->x;
+    }
+
+    public function top(): int
+    {
+        return $this->y + $this->height;
+    }
+
+    public function bottom(): int
+    {
+        return $this->y;
+    }
+
+
+
 }
