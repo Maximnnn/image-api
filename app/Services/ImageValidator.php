@@ -35,8 +35,8 @@ class ImageValidator
     {
         foreach ($rectangles as $rectangle) {
             if (
-                $rectangle->x + $rectangle->width > $imageParameters->width
-                || $rectangle->y + $rectangle->height > $imageParameters->height
+                $rectangle->right() > $imageParameters->width
+                || $rectangle->top() > $imageParameters->height
             ) {
                 throw new ValidateException('rectangles_out_of_bounds', ['rectangles_out_of_bounds' => ['id' => $rectangle->customId]]);
             }
