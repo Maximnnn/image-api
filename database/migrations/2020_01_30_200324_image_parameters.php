@@ -15,7 +15,7 @@ class ImageParameters extends Migration
     {
         Schema::create('imageParameters', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('imageId');
+            $table->bigInteger('imageId')->unique();
             $table->integer('width');
             $table->integer('height');
             $table->string('color', 10);
